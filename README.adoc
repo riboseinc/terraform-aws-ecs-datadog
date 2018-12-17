@@ -1,0 +1,50 @@
+= Terraform module to setup Datadog ECS daemon service
+
+This module helps you create Datadog ECS daemon service and the related task role, assuming that:
+
+* you have created a ECS cluster
+* and of course, your AWS account provides you access to all these resources necessary.
+
+== Sample Usage
+
+You can literally copy and paste the following example, change the following attributes, and you're ready to go:
+
+* `datadog-api-key`: set it to Datadog API Key
+* `datadog-extra-config` set to a shell script to run when starting the Datadog container
+* `env` set to the name of environment name (e.g., `test`)
+* `identifier` set to the identifier (e.g., `datadog`)
+* `ecs-cluster-id` set to the arn of an ECS cluster 
+
+[source,hcl]
+----
+# include this module and enter the values of input variables
+module "ecs-datadog" {
+  source = "github.com/riboseinc/terraform-aws-ecs-datadog"
+ 
+  datadog-api-key = "${var.datadog-api-key}"
+  datadog-extra-config = "${var.datadog-extra-config}"
+  env = "${var.env}"
+  identifier = "${var.identifier}"
+  ecs-cluster-id = "${var.ecs-cluster-id}"
+}
+
+variable "datadog-api-key" {
+  default = "XXXXXX"
+}
+
+variable "datadog-extra-config" {
+  default = "do_something.sh; ./init"
+}
+
+variable "env" {
+  default = "test"
+}
+
+variable "identifier" {
+  default = "mydatadog"
+}
+
+variable "ecs-cluster-id" {
+  default = "ecs-cluster-arn"
+}
+----
