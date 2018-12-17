@@ -10,10 +10,10 @@ This module helps you create Datadog ECS daemon service and the related task rol
 You can literally copy and paste the following example, change the following attributes, and you're ready to go:
 
 * `datadog-api-key`: set it to Datadog API Key
-* `datadog-extra-config` set to a shell script to run when starting the Datadog container
-* `env` set to the name of environment name (e.g., `test`)
-* `identifier` set to the identifier (e.g., `datadog`)
-* `ecs-cluster-id` set to the arn of an ECS cluster 
+* `datadog-extra-config` set it to a shell script to run when starting the Datadog container
+* `env` set it to the name of environment name (e.g., `test`)
+* `identifier` set it to the identifier (e.g., `datadog`)
+* `ecs-cluster-id` set it to the arn of an ECS cluster 
 
 [source,hcl]
 ----
