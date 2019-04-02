@@ -47,7 +47,7 @@ EOF
 
   volume {
     name      = "cgroup"
-    host_path = "/cgroup/"
+    host_path = "/sys/fs/cgroup/"
   }
 }
 
