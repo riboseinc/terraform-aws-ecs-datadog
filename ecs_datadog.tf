@@ -55,7 +55,7 @@ resource "aws_ecs_service" "datadog" {
   name            = "${var.env}-${var.identifier}-datadog-ecs-service"
   cluster         = "${var.ecs-cluster-id}"
   task_definition = "${aws_ecs_task_definition.datadog.arn}"
-  desired_count =   "${var.count}"
+  desired_count =   "${var.desired_count}"
 
   # This allows running once for every instance
   scheduling_strategy = "DAEMON"
