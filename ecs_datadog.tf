@@ -9,14 +9,15 @@ resource "aws_ecs_task_definition" "datadog" {
     "image": "datadog/agent:latest",
     "cpu": 10,
     "memory": 256,
-    "environment": [{
+    "environment": [
+     {
       "name" : "DD_API_KEY",
       "value" : "${var.datadog-api-key}"
-    }],
-    "command": [
-      "bash",
-      "-c",
-      "${var.datadog-extra-config}"
+     },
+     {
+      "name" : "DD_SITE",
+      "value" : "datadoghq.com"
+     }
     ],
     "mountPoints": [{
       "sourceVolume": "docker-sock",
@@ -47,7 +48,7 @@ EOF
 
   volume {
     name      = "cgroup"
-    host_path = "/cgroup/"
+    host_path = "/sys/fs/cgroup/"
   }
 }
 
