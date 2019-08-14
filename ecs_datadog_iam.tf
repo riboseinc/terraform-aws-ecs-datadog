@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "datadog_aws_integration" {
   statement {
     actions = [
       "ecs:Describe*",
-      "ecs:List*"
+      "ecs:List*",
       "cloudwatch:Get*",
       "cloudwatch:List*",
       "ec2:Describe*",
