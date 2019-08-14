@@ -27,6 +27,13 @@ data "aws_iam_policy_document" "datadog_aws_integration" {
     actions = [
       "ecs:Describe*",
       "ecs:List*"
+      "cloudwatch:Get*",
+      "cloudwatch:List*",
+      "ec2:Describe*",
+      "support:*",
+      "tag:GetResources",
+      "tag:GetTagKeys",
+      "tag:GetTagValues"
     ]
     effect = "Allow"
     resources = ["*"]
