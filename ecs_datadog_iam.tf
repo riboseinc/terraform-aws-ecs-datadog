@@ -16,7 +16,7 @@ resource "aws_iam_policy" "ecs-datadog-role-policy" {
 data "aws_iam_policy_document" "ecs-datadog-role" {
 
   statement {
-    sid = "AllowDatadogToReadECSMetrics",
+    sid = "AllowDatadogToReadECSMetrics"
     effect = "Allow"
     actions = [
       "ecs:RegisterContainerInstance",
