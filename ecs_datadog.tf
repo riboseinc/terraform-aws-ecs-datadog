@@ -9,6 +9,14 @@ resource "aws_ecs_task_definition" "datadog" {
     "image": "datadog/agent:latest",
     "cpu": 10,
     "memory": 256,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8126,
+        "hostPort": 8126,
+        "protocol": "tcp"
+      }
+    ],
     "environment": [
      {
       "name" : "DD_API_KEY",
@@ -17,6 +25,14 @@ resource "aws_ecs_task_definition" "datadog" {
      {
       "name" : "DD_SITE",
       "value" : "datadoghq.com"
+     },
+     {
+      "name" : "DD_APM_ENABLED",
+      "value" : "true"
+     },
+     {
+      "name" : "DD_APM_NON_LOCAL_TRAFFIC",
+      "value" : "true"
      }
     ],
     "mountPoints": [{
