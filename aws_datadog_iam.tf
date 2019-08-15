@@ -1,15 +1,10 @@
-variable "datadog_aws_integration_external_id" {
-  default = "0e21499d3743404bbd8ab31b05bce792"
-  description = ""
-}
-
 data "aws_iam_policy_document" "datadog_aws_integration_assume_role" {
   statement {
     actions = ["sts:AssumeRole"]
 
     principals {
       type = "AWS"
-      identifiers = ["arn:aws:iam::464622532012:root"]
+      identifiers = ["arn:aws:iam::464622532012:root"] # Datadog AWS Account ID
     }
     condition {
       test = "StringEquals"
