@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "datadog" {
-  family        = "${var.env}-${var.identifier}-datadog-task"
+  family        = "${var.env}-${var.identifier}-task"
   task_role_arn = "${aws_iam_role.ecs-datadog-role.arn}"
 
   container_definitions = <<EOF
