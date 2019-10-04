@@ -31,6 +31,18 @@ resource "aws_ecs_task_definition" "datadog" {
       "value" : "true"
      },
      {
+      "name": "DD_LOGS_ENABLED",
+      "value": "true"
+     },
+     {
+      "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
+      "value": "true"
+     },
+     {
+      "name": "SD_BACKEND",
+      "value": "docker"
+     },
+     {
       "name" : "DD_APM_NON_LOCAL_TRAFFIC",
       "value" : "true"
      }
