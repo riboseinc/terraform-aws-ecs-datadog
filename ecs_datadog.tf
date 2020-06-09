@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "datadog" {
     "image": "datadog/agent:latest",
     "cpu": 0,
     "memory": 256,
-    "essential":"true,
+    "essential": true,
     "environment": [
       {
         "name" : "DD_API_KEY",
