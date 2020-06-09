@@ -12,7 +12,13 @@ resource "aws_ecs_task_definition" "datadog" {
     "environment": [{
       "name" : "DD_API_KEY",
       "value" : "${var.datadog-api-key}"
-    }],
+    },{
+          "name": "DD_LOGS_ENABLED",
+          "value": "true"
+        },{
+          "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
+          "value": "true"
+        }],
     "command": [
       "bash",
       "-c",
