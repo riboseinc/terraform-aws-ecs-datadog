@@ -26,7 +26,7 @@ resource "aws_ecs_task_definition" "datadog" {
     "command": [
       "bash",
       "-c",
-      "${var.datadog-extra-config}"
+      "${var.datadog-extra-config}", "-v", "/var/run/docker.sock:/var/run/docker.sock:ro"
     ],
     "mountPoints": [{
       "sourceVolume": "docker-sock",
