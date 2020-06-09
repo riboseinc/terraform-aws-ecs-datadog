@@ -9,16 +9,20 @@ resource "aws_ecs_task_definition" "datadog" {
     "image": "datadog/agent:latest",
     "cpu": 10,
     "memory": 256,
-    "environment": [{
-      "name" : "DD_API_KEY",
-      "value" : "${var.datadog-api-key}"
-    },{
-          "name": "DD_LOGS_ENABLED",
-          "value": "true"
-        },{
-          "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
-          "value": "true"
-        }],
+    "environment": [
+      {
+        "name" : "DD_API_KEY",
+        "value" : "${var.datadog-api-key}"
+      },{
+        "name": "DD_LOGS_ENABLED",
+        "value": "true"
+      },{
+        "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
+        "value": "true"
+      }, {
+        "name": "DD_AC_EXCLUDE",
+        "value": "name:datadog-agent"
+      }],
     "command": [
       "bash",
       "-c",
