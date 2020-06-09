@@ -20,7 +20,7 @@ resource "aws_ecs_task_definition" "datadog" {
       },{
         "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
         "value": "true"
-      }, {
+      },{
         "name": "DD_AC_EXCLUDE",
         "value": "name:datadog-agent"
       }],
