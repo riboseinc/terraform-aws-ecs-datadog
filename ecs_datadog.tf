@@ -9,6 +9,7 @@ resource "aws_ecs_task_definition" "datadog" {
     "image": "datadog/agent:latest",
     "cpu": 0,
     "memory": 256,
+    "essential":"true,
     "environment": [
       {
         "name" : "DD_API_KEY",
@@ -26,7 +27,7 @@ resource "aws_ecs_task_definition" "datadog" {
     "command": [
       "bash",
       "-c",
-      "${var.datadog-extra-config}", "-v", "/var/run/docker.sock:/var/run/docker.sock:ro"
+      "${var.datadog-extra-config}"
     ],
     "mountPoints": [{
       "sourceVolume": "docker-sock",
