@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "datadog" {
     "name": "${var.env}-${var.identifier}",
     "image": "datadog/agent:latest",
     "cpu": 10,
-    "memory": 256,
+    "memory": 100,
     "essential": true,
     "environment": [
       {
