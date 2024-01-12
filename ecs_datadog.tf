@@ -6,10 +6,17 @@ resource "aws_ecs_task_definition" "datadog" {
 [
   {
     "name": "${var.env}-${var.identifier}",
-    "image": "datadog/agent:latest",
+    "image": "public.ecr.aws/datadog/agent:latest",
     "cpu": 10,
-    "memory": 100,
+    "memory": 200,
     "essential": true,
+    "portMappings": [
+        {
+          "hostPort": 8126,
+          "protocol": "tcp",
+          "containerPort": 8126
+        }
+    ],
     "environment": [
       {
         "name" : "DD_API_KEY",
