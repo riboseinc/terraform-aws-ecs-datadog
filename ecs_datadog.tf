@@ -25,6 +25,15 @@ resource "aws_ecs_task_definition" "datadog" {
         "name": "DD_LOGS_ENABLED",
         "value": "true"
       },{
+        "name": "DD_APM_ENABLED",
+        "value": "true"
+      },{
+        "name": "DD_APM_NON_LOCAL_TRAFFIC",
+        "value": "true"
+      },{
+        "name": "DD_APM_RECEIVER_SOCKET",
+        "value": "/opt/datadog/apm/inject/run/apm.socket"
+      },{
         "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
         "value": "true"
       },{
