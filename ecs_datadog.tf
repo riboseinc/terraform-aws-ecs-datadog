@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "datadog" {
     "name": "${var.env}-${var.identifier}",
     "image": "public.ecr.aws/datadog/agent:latest",
     "cpu": 10,
-    "memory": 500,
+    "memory": 512,
     "essential": true,
     "portMappings": [
         {
@@ -27,6 +27,9 @@ resource "aws_ecs_task_definition" "datadog" {
       },{
         "name": "DD_APM_ENABLED",
         "value": "true"
+      },{
+        "name": "DD_APM_CONCURRENCY",
+        "value": "10"
       },{
         "name": "DD_APM_NON_LOCAL_TRAFFIC",
         "value": "true"
