@@ -32,7 +32,7 @@ resource "aws_ecs_task_definition" "datadog" {
         "value": "true"
       },{
         "name": "DD_APM_RECEIVER_SOCKET",        
-        "value" : /var/run/datadog/apm.socket
+        "value" : "/var/run/datadog/apm.socket"
       },{
         "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
         "value": "true"
