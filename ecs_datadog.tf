@@ -28,9 +28,6 @@ resource "aws_ecs_task_definition" "datadog" {
         "name": "DD_APM_ENABLED",
         "value": "true"
       },{
-        "name": "DD_APM_CONCURRENCY",
-        "value": "10"
-      },{
         "name": "DD_APM_NON_LOCAL_TRAFFIC",
         "value": "true"
       },{
