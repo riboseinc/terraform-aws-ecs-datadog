@@ -34,6 +34,9 @@ resource "aws_ecs_task_definition" "datadog" {
         "name": "DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL",
         "value": "true"
       },{
+        "name": "DD_APM_RECEIVER_SOCKET",
+        "value": "/var/run/datadog/apm.socket"
+      },{
         "name": "DD_AC_EXCLUDE",
         "value": "name:datadog-agent"
       }],
@@ -54,6 +57,10 @@ resource "aws_ecs_task_definition" "datadog" {
       "sourceVolume": "cgroup",
       "containerPath": "/host/sys/fs/cgroup",
       "readOnly": true
+    },{
+      "sourceVolume": "datadog",
+      "containerPath": "/var/run/datadog/",
+      "readOnly": false
     }]
   }
 ]
@@ -72,6 +79,11 @@ EOF
   volume {
     name      = "cgroup"
     host_path = "/cgroup/"
+  }
+
+  volume {
+    name      = "datadog"
+    host_path = "/var/run/datadog/"
   }
 }
 
