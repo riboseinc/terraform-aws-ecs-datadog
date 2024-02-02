@@ -1,6 +1,6 @@
 resource "aws_ecs_task_definition" "datadog" {
   family        = "${var.env}-${var.identifier}-datadog-task"
-  task_role_arn = "${aws_iam_role.ecs-datadog-role.arn}"
+  task_role_arn = aws_iam_role.ecs-datadog-role.arn
 
   container_definitions = <<EOF
 [
@@ -17,11 +17,12 @@ resource "aws_ecs_task_definition" "datadog" {
           "containerPort": 8126
         }
     ],
+    "secrets": [
+      "name": "DD_API_KEY",
+      "valueFrom: "arn:aws:secretsmanager:us-east-1:447502150454:secret:production/datadog/api_key-cThpym"
+    ]
     "environment": [
       {
-        "name" : "DD_API_KEY",
-        "value" : "${var.datadog-api-key}"
-      },{
         "name": "DD_LOGS_ENABLED",
         "value": "true"
       },{
@@ -89,8 +90,8 @@ EOF
 
 resource "aws_ecs_service" "datadog" {
   name            = "${var.env}-${var.identifier}-datadog-ecs-service"
-  cluster         = "${var.ecs-cluster-id}"
-  task_definition = "${aws_ecs_task_definition.datadog.arn}"
+  cluster         = var.ecs-cluster-id
+  task_definition = aws_ecs_task_definition.datadog.arn
 
   # This allows running once for every instance
   scheduling_strategy = "DAEMON"
